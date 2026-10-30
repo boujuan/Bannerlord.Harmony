@@ -7,8 +7,8 @@
   <DefaultModule value="false" />
   <ModuleCategory value="Singleplayer" />
   <ModuleType value ="Community" />
-  <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/2006" />
-  <UpdateInfo value="NexusMods:2006" />
+  <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/11597" />
+  <UpdateInfo value="NexusMods:11597" />
   <DependedModules />
   <ModulesToLoadAfterThis>
     <Module Id="Native" />
