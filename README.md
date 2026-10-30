@@ -1,3 +1,50 @@
+# Harmony Updated (fork of BUTR/Bannerlord.Harmony)
+
+<p align="center">
+  <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3740878109">
+    <img alt="Steam Subscriptions" src="https://img.shields.io/steam/subscriptions/3740878109?label=Steam%20Subscriptions&color=blue">
+  </a>
+  <a href="https://www.nexusmods.com/mountandblade2bannerlord/mods/11597">
+    <img alt="NexusMods Version" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fnmstats.butr.link%2Fmod-version%3FgameId%3D3174%26modId%3D11597">
+  </a>
+  <a href="https://www.nuget.org/packages/Lib.Harmony">
+    <img alt="NuGet Lib.Harmony" src="https://img.shields.io/nuget/v/Lib.Harmony.svg?label=NuGet%20Lib.Harmony&colorB=blue" />
+  </a>
+</p>
+
+Community-maintained rebuild of [BUTR's Harmony module](https://github.com/BUTR/Bannerlord.Harmony), published as **Harmony Updated** on the
+[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3740878109) and [Nexus Mods](https://www.nexusmods.com/mountandblade2bannerlord/mods/11597).
+It keeps the module id `Bannerlord.Harmony`, so every mod that depends on Harmony works with it unchanged. Install either this or the original, not both.
+
+What this fork changes on top of BUTR's `dev`:
+* Harmony **2.4.3** (`Lib.Harmony.Thin`, MonoMod.Core 1.3.6) and Bannerlord.ModuleManager 6.0.249.
+* Built against Bannerlord **v1.5.6 beta** (`Bannerlord.ReferenceAssemblies.Core` 1.5.6.125053-beta) and API-checked against v1.4.8 stable, so one release serves both.
+* `Url`/`UpdateInfo` in `SubModule.xml` point to this fork's Nexus page.
+* Linux builds work out of the box (fixed default game path) and `build/package.sh` produces the release files.
+
+### Branches
+* `dev` mirrors [BUTR's `dev`](https://github.com/BUTR/Bannerlord.Harmony/tree/dev). Sync it with GitHub's *Sync fork* button or `git fetch upstream && git push origin upstream/dev:dev`.
+* `gameversion-<version>` branches carry this fork's changes rebased on `dev`.
+
+### Building (Windows or Linux)
+Needs the .NET SDK 8 or newer. On Linux the `net472` target builds through `Microsoft.NETFramework.ReferenceAssemblies`, no Mono or Windows needed.
+```sh
+dotnet build src/Bannerlord.Harmony/Bannerlord.Harmony.csproj -c Stable_Release
+```
+The module is copied into the game's `Modules` folder (Steam's default location, or `$BANNERLORD_GAME_DIR`).
+To target a new game version, change `GameVersion` in `build/common.props`; beta versions such as `1.5.6` resolve to their `-beta` reference package.
+
+### Releasing
+```sh
+build/package.sh <build-id>   # e.g. 249 -> v2.4.3.249
+```
+Builds into `artifacts/`: upload `Bannerlord.Harmony-v<version>.zip` to Nexus Mods, and push the Workshop item with the
+`steamcmd +login <steam-user> +workshop_build_item <abs-path>/workshop_item.vdf +quit` command the script prints.
+
+---
+
+## Original README (BUTR)
+
 <p align="center">
   <a href="https://github.com/BUTR/Bannerlord.Harmony/actions/workflows/publish.yml?query=branch%3Amaster+event%3Apush">
     <img alt="GitHub Workflow Status (event)" src="https://img.shields.io/github/actions/workflow/status/BUTR/Bannerlord.Harmony/publish.yml?branch=master&event=push&label=Latest%20Commit">
